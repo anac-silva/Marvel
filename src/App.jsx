@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyle";
-import Header from "./components/Header/Index";
-import IntroSection from "./components/IntroSection/Index";
-import ComicPesquisa from "./components/ComicPesquisa/Index";
-import ComicList from "./components/ComicList/Index";
-import ComicDetalhes from "./pages/ComicDetalhes/Index";
-import Carrinho from "./pages/Carrinho/Index";
+import Header from "./components/Header";
+import IntroSection from "./components/IntroSection";
+import ComicPesquisa from "./components/ComicPesquisa";
+import ComicList from "./components/ComicList";
+import ComicDetalhes from "./pages/ComicDetalhes";
+import Carrinho from "./pages/Carrinho";
 import Footer from "./components/Footer";
 
 export default function App() {
