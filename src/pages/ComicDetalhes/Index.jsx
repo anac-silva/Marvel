@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useComics } from "../../Context/ComicsContext";
-import { useCart } from "../../Context/CartContext";
+import { useComics } from "../../context/ComicsContext";
+import { useCart } from "../../context/CartContext";
 import { 
     ComicDetailsSection,
     DetailsTitle,
