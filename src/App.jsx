@@ -16,7 +16,6 @@ export default function App() {
     <>
       <GlobalStyle />
       <Header />
-
       <main>
         <Routes>
           <Route
