@@ -25,7 +25,7 @@ export function ComicsProvider({ children }) {
             apikey: publicKey,
             hash,
             orderBy: "title",
-            limit: "20",
+            limit: "25",
             });
 
             const res = await fetch(

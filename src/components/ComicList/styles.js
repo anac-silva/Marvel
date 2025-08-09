@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const ComicListContainer = styled.section`
     display: grid;
+    justify-items: center;
     grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
     gap: 20px;
     padding: 20px;
 `;
 
-export const CardComicList = styled.div`
+export const CardComicList = styled.div.attrs({ className: "sr-card" })`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,15 +22,21 @@ export const CardComicListImage = styled.img`
     width: 280px;
     border-radius: 10px;
     margin: 15px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.02);
+    }
 `;
 
-export const CardComicListTextos = styled.div`
+export const CardComicListTexts = styled.div`
     text-align: left;
     width: 270px;
 `;
 
 export const CardComicListTitle = styled.h3`
     font-size: 1rem;
+    height: 40px;
 `;
 
 export const CardComicListValor = styled.p`
@@ -66,7 +73,7 @@ export const ButtonComicListDetalhes = styled.button`
     background-color: #b9b9b9ff;
     color: white;
     width: 130px;
-    padding: 10px 25px;
+    padding: 8px 23px;
     border: 1px solid #575656ff;
     border-radius: 10px;
     cursor: pointer;

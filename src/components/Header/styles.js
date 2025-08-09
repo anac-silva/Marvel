@@ -12,9 +12,9 @@ export const ImgLogo = styled.img`
     margin: 20px;
 `;
 
-export const ImgCarrinho = styled.img`
-    width: 30px;
-    padding-right: 10px;
+export const ImgCart = styled.img`
+    width: 25px;
+    padding-right: 5px;
 `;
 
 export const LinkStyled = styled(Link)`
