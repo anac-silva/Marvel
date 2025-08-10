@@ -13,27 +13,15 @@ export function ComicsProvider({ children }) {
             setLoading(true);
             setError(null);
 
-            const ts = Date.now().toString();
-            const publicKey = import.meta.env.VITE_MARVEL_PUBLIC_KEY;
-            const privateKey = import.meta.env.VITE_MARVEL_PRIVATE_KEY;
-
-            const { default: md5 } = await import("md5");
-            const hash = md5(ts + privateKey + publicKey);
-
             const params = new URLSearchParams({
-            ts,
-            apikey: publicKey,
-            hash,
-            orderBy: "title",
-            limit: "25",
-            });
+                path: "comics",
+                orderBy: "title",
+                limit: "25",
+                });
 
-            const res = await fetch(
-            `https://gateway.marvel.com/v1/public/comics?${params.toString()}`
-            );
-            if (!res.ok) throw new Error(`Marvel ${res.status}`);
-
+            const res = await fetch(`/api/marvel?${params.toString()}`);
             const json = await res.json();
+            if (!res.ok) throw new Error(`Marvel ${res.status} – ${json?.message || 'erro'}`);
 
             const items = (json?.data?.results ?? []).map((c) => {
             const path = c?.thumbnail?.path?.replace("http:", "https:") || "";
