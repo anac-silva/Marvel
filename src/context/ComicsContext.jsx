@@ -13,31 +13,26 @@ export function ComicsProvider({ children }) {
             setLoading(true);
             setError(null);
 
-            const params = new URLSearchParams({
-                path: "comics",
-                orderBy: "title",
-                limit: "25",
-                });
+            const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+            const res = await fetch(`${apiUrl}/marvel`);
+            const data = await res.json();
 
-            const res = await fetch(`/api/marvel?${params.toString()}`);
-            const json = await res.json();
-            if (!res.ok) throw new Error(`Marvel ${res.status} – ${json?.message || 'erro'}`);
+            if (!res.ok) {
+            throw new Error(data.message || "Erro desconhecido");
+            }
 
-            const items = (json?.data?.results ?? []).map((c) => {
+            const items = (data?.data?.results ?? []).map((c) => {
             const path = c?.thumbnail?.path?.replace("http:", "https:") || "";
             const ext = c?.thumbnail?.extension || "jpg";
             const thumbnail = path ? `${path}/portrait_uncanny.${ext}` : "";
 
             const prices = c?.prices ?? [];
             const print = prices.find((p) => p.type === "printPrice" && p.price > 0);
-            const digital = prices.find(
-                (p) => p.type === "digitalPurchasePrice" && p.price > 0
-            );
+            const digital = prices.find((p) => p.type === "digitalPurchasePrice" && p.price > 0);
             const chosen = print || digital || prices[0];
             const price = chosen?.price ?? 0;
 
-            const characters =
-                c?.characters?.items?.slice(0, 5).map((ch) => ch.name) ?? [];
+            const characters = c?.characters?.items?.slice(0, 5).map((ch) => ch.name) ?? [];
 
             return {
                 id: c.id,
